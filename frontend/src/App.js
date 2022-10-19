@@ -4,7 +4,7 @@ import '../node_modules/font-awesome/css/font-awesome.css'
 // import Sidebar from './components/Sidebar'
 import Records from './components/Records'
 import { Fragment, useEffect, useState } from 'react';
-import Sidenar2 from './components/Sidenar2';
+import Sidenar from './components/Sidebar';
 // import AddRecord from './components/AddRecord';
 
 function App(data_) {
@@ -55,7 +55,7 @@ function App(data_) {
   return (
     <Fragment>
       <div className='dashboard'>
-        <Sidenar2 />
+        <Sidenar />
         <Records allData={allData}/>
         {/* <div className='list'>
           <Records allData={allData}/>

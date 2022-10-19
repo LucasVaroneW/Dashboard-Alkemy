@@ -1,11 +1,17 @@
 *{
-	margin: 0;
+	margin: 0 ;
 	padding: 0 ;
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
     font-family: 'Poppins', sans-serif;
 }
+
+:root{
+    --m-background: linear-gradient(-45deg, #4568dc, #b06ab3);
+
+}
+
 a,ul,li{
     color: inherit !important;
     text-decoration: none !important;
@@ -18,18 +24,10 @@ body{
     background-color: #a9b7d041 !important;
 }
 
-/* .dashboard{
-    top: 0 !important;
-    left: 0 !important;
-} */
-
-
-
 /* --------------------------            SIDEBAR START                  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
   
 .sidebar {
-    margin-top: -10px;
     display: block;
     position: relative;
     -webkit-transition: all .3s ease-in-out;
@@ -38,7 +36,7 @@ body{
     width: 264px;
     height: 100vh;
     /* background: #6c7ae0; */
-    background: linear-gradient(-45deg, #4568dc, #b06ab3);
+    background: var(--m-background);
     color: #ffffff !important;
     border-radius: 0 20px 20px 0 !important;
     -webkit-border-radius: 0 20px 20px 0 !important;
@@ -77,11 +75,12 @@ ion-icon{
     margin: 2px;
 }
 
+
 .sidebar-header{
     display: flex;
     flex-direction: column;
-    margin-top: 7%;
     align-items: center;
+    padding-top: 15px;
 }
 
 .sidebar-item{
@@ -155,7 +154,7 @@ ion-icon{
 }
 
 thead{
-    background: linear-gradient(-45deg, #4568dc, #b06ab3);
+    background: var(--m-background);
     color: #ffffff !important;
 
 }
@@ -232,12 +231,12 @@ thead{
   }
   
   .bn30:hover {
-    background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+    background-image: var(--m-background);
     box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
   }
   
   .bn30:hover .text {
-    background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+    background-image: var(--m-background);
   }
 
 /* --------------------------            BALANCE END                   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
