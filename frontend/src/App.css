@@ -1,0 +1,243 @@
+*{
+	margin: 0;
+	padding: 0 ;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+	text-shadow: rgba(0,0,0,.01) 0 0 1px;
+    font-family: 'Poppins', sans-serif;
+}
+a,ul,li{
+    color: inherit !important;
+    text-decoration: none !important;
+    list-style-type: none;
+    margin-bottom: 0 !important;
+    padding-left: 0 !important;
+}
+
+body{
+    background-color: #a9b7d041 !important;
+}
+
+/* .dashboard{
+    top: 0 !important;
+    left: 0 !important;
+} */
+
+
+
+/* --------------------------            SIDEBAR START                  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+  
+.sidebar {
+    margin-top: -10px;
+    display: block;
+    position: relative;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    box-shadow: 1px 0 20px 0 #3f4d67;
+    width: 264px;
+    height: 100vh;
+    /* background: #6c7ae0; */
+    background: linear-gradient(-45deg, #4568dc, #b06ab3);
+    color: #ffffff !important;
+    border-radius: 0 20px 20px 0 !important;
+    -webkit-border-radius: 0 20px 20px 0 !important;
+    -moz-border-radius: 0 20px 20px 0 !important;
+    -ms-border-radius: 0 20px 20px 0 !important;
+    -o-border-radius: 0 20px 20px 0 !important;
+}
+
+ion-icon{
+    font-size: 32px;
+}
+
+
+
+.sidebar-profile{
+    margin: 20px;
+}
+
+.sidebar-profile-link{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.sidebar-profile-img{
+    width: 65px;
+    border-radius: 35px;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    -ms-border-radius: 35px;
+    -o-border-radius: 35px;
+}
+
+.sidebar-link{
+    margin: 2px;
+}
+
+.sidebar-header{
+    display: flex;
+    flex-direction: column;
+    margin-top: 7%;
+    align-items: center;
+}
+
+.sidebar-item{
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    /* margin-left: 12%; */
+    margin: 12%;
+    cursor: pointer;
+}
+
+.sidebar-item-text{
+    margin-left: 9px;
+}
+
+.sidebar-item:hover{
+    background-color: #4d5380a8 !important;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    /* color: #ffffffb3 !important; */
+
+}
+
+
+/* --------------------------            SIDEBAR END                   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* --------------------------            TABLE START                   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+.table{
+    display: table;
+    border-collapse:collapse;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border-style: hidden;
+    width:100%;
+    max-width: 100%;
+}
+
+.table_container{
+    width: 720px ;
+    border-radius: 18px;
+    border: 1px solid rgba(152, 150, 150, 0.52);
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    -ms-border-radius: 18px;
+    -o-border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 3px 2px rgba(108, 107, 107, 0.546);
+    background-color: white !important;
+    top: 30%;
+}
+
+.table_row{
+    color: #666666;
+
+}
+
+
+.table_row, .table_cell{
+    font-size: 15px;
+    line-height: 1.2;
+    font-weight: unset !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+thead{
+    background: linear-gradient(-45deg, #4568dc, #b06ab3);
+    color: #ffffff !important;
+
+}
+
+/* --------------------------            TABLE END                   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* --------------------------            BALANCE START                   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+.grid{
+    color: #666666;
+    display: flex;
+    justify-content: space-around;
+}
+
+.currentMoney{
+    margin-bottom: 4%;
+    width: 350px;
+    height: 50px;
+    border-radius: 65px;
+    border: 1px solid rgba(152, 150, 150, 0.52);
+    -webkit-border-radius: 65px;
+    -moz-border-radius: 65px;
+    -ms-border-radius: 65px;
+    -o-border-radius: 65px;
+    overflow: hidden;
+    box-shadow: 3px 2px rgba(108, 107, 107, 0.546);
+    background-color: white !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.currentBalance strong{
+    margin: 0 10px;
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.bn30 {
+    height: 50px;
+    border: 5em;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    -webkit-transform: translate(0);
+    transform: translate(0);
+    background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+    padding: 0.7em 2em;
+    border-radius: 65px;
+    box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
+    -webkit-transition: box-shadow 0.25s;
+    transition: box-shadow 0.25s;
+  }
+  
+  .bn30 .text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+  }
+  
+  .bn30:after {
+    content: "";
+    border-radius: 18px;
+    position: absolute;
+    margin: 4px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    background: white;
+  }
+  
+  .bn30:hover {
+    background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+    box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
+  }
+  
+  .bn30:hover .text {
+    background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+  }
+
+/* --------------------------            BALANCE END                   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
