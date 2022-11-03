@@ -24,6 +24,16 @@ body{
     background-color: #a9b7d041 !important;
 }
 
+h6{
+    margin-bottom: 0 !important;
+}
+
+.dashboard-content{
+    display: flex;
+    width: 100vh;
+    height: 100vh;
+}
+
 /* --------------------------            SIDEBAR START                  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
   
@@ -194,7 +204,7 @@ thead{
     white-space: nowrap;
 }
 
-.bn30 {
+.bnRecord {
     height: 50px;
     border: 5em;
     cursor: pointer;
@@ -210,14 +220,14 @@ thead{
     transition: box-shadow 0.25s;
   }
   
-  .bn30 .text {
+  .bnRecord .text {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+    background-image: var(--m-background);
   }
   
-  .bn30:after {
+  .bnRecord:after {
     content: "";
     border-radius: 18px;
     position: absolute;
@@ -230,13 +240,61 @@ thead{
     background: white;
   }
   
-  .bn30:hover {
+  .bnRecord:hover {
     background-image: var(--m-background);
     box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
   }
   
-  .bn30:hover .text {
+  .bnRecord:hover .text {
     background-image: var(--m-background);
   }
 
 /* --------------------------            BALANCE END                   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* --------------------------            FORM START                   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+form{
+    max-width: 500px;
+    width: 300px;
+    display: grid;
+}
+
+.input_container{
+    display: grid;
+}
+
+.input_container label{
+    margin-bottom: 10px;
+}
+
+.input_container input, .input_container select{
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.input_container select{
+    padding-right: 20px;
+}
+
+form .btn{
+    width: 200px;
+    padding: 10px 20px;
+    font-size: 14px;
+    margin: auto;
+}
+
+.btn{
+    background: var(--m-blue);
+    border: unset;
+    padding: 5px 10px;
+    margin: 0 10px;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+
+/* --------------------------            FORM END                   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

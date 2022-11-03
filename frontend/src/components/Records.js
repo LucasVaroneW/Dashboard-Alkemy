@@ -1,5 +1,6 @@
 import React, {Fragment, useState} from 'react'
 import '../App.js'
+import Form from "./Form";
 import {toast, Toaster} from 'react-hot-toast'
 import PopUp from "./PopUp";
 import CurrentMoney from "./CurrentMoney"
@@ -12,7 +13,6 @@ const Records = ({allData,data,setData, setRecordUpdated}) => {
 
   const handlePopUpDelete = (id) => {
       setPopUp(() => {
-        console.log(id)
           return <Fragment>
               <h3>Delete Confirmation</h3>
               <p>Are you sure you want to delete?</p>
@@ -39,54 +39,55 @@ const Records = ({allData,data,setData, setRecordUpdated}) => {
     setRecordUpdated(true)
   }
 
-  const handleUpdate = (id, data) => {
+  const UpdateForm = ({id, data_})=>{
+    const [data, setData] = useState(data_)
+    return <Fragment>
+        <h3>Edit Activity</h3>
+        <Form data={data} setData={setData} setRecordUpdated={setRecordUpdated} setPopUp={setPopUp} btn={'Update'}></Form>
+    </Fragment>
+}
+
+const handleUpdate = (id, data_) => {
     //validation
     setPopUp(() => {
-        // return <UpdateForm id={id} data={data}/>
+        return <UpdateForm id={id} data_={data_}/>
     })
-    setRecordUpdated(true)
-  }
-
-  // const UpdateForm = (data)=>{
-  //   const [data, setData] = useState(data)
-  //   return <Fragment>
-  //       <h3>Edit Activity</h3>
-  //       <Form data={data} setData={setData} setRecordUpdated={setRecordUpdated} setPopUp={setPopUp} btn={'update'}></Form>
-  //   </Fragment>
-  // }
-
+    // setListUpdated(true)
+}
+  
   // const handleFilter = () => {
   //   toast.success('added',{style: {borderRadius: '10px',background: '#333',color: '#fff'}})
   // }
 
-  // let [currentMoney, setCurrentMoney] = useState(0.00)
+  let [currentMoney, setCurrentMoney] = useState(0.00)
 
 
   return (
     <Fragment>
-      <CurrentMoney data={data} setData={setData} CurrentMoney={CurrentMoney} setRecordUpdated={setRecordUpdated}/>
-      <div className="table_container">
-        <table className="table">
-          <thead className='table_head'>
-            <tr>
-              <th className='table_cell'>Category</th>
-              <th className='table_cell'>Type</th>
-              <th className='table_cell'>Others</th>
-              <th className='table_cell'>Amount</th>
-              <th className='table_cell'>Date</th>
-              <th className='table_cell'>Modification Date</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-              {
+      <div style={{margin: '20px'}}>
+        <CurrentMoney data={data} setData={setData} currentMoney={currentMoney} setRecordUpdated={setRecordUpdated}/>
+        <div className="table_container">
+          <table className="table">
+            <thead className='table_head'>
+              <tr>
+                <th className='table_cell'>Category</th>
+                <th className='table_cell'>Type</th>
+                <th className='table_cell'>Others</th>
+                <th className='table_cell'>Amount</th>
+                <th className='table_cell'>Date</th>
+                <th className='table_cell'>Modification Date</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+                {
                 allData.map((data, i) => {
-                  console.log(data.id)
+                  currentMoney += parseFloat(data.amount)
                     return (<tr className='table_row' key={i}>
                       <th className='table_cell' >{data.id_category}</th>
                       <th className='table_cell' >{data.id_typs}</th>
                       <th className='table_cell' >{data.others}</th>
-                      <th className='table_cell' >{data.amount}</th>
+                      <th className='table_cell' >${data.amount}</th>
                       <th className='table_cell' >{data.date.split('T')[0].split('-').join('/')}</th>
                       <th className='table_cell' >{data.date.split('T')[0].split('-').join('/')}</th>
                       <th>
@@ -95,12 +96,13 @@ const Records = ({allData,data,setData, setRecordUpdated}) => {
                       </th>                                                
                     </tr>)
                   })
-              }
-          </tbody>
-        </table> 
+                }
+            </tbody>
+          </table> 
+        </div>
+        <PopUp trigger={buttonPopup} setPopUp={setPopUp}></PopUp>
+        <Toaster position="bottom-right"/>
       </div>
-      <PopUp trigger={buttonPopup} setPopUp={setPopUp}></PopUp>
-      <Toaster position="bottom-right"/>
     </Fragment>     
   )
 }

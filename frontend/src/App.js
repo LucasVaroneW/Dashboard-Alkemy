@@ -4,10 +4,22 @@ import '../node_modules/font-awesome/css/font-awesome.css'
 // import Sidebar from './components/Sidebar'
 import Records from './components/Records'
 import { Fragment, useEffect, useState } from 'react';
-import Sidenar from './components/Sidebar';
+import Sidebar from './components/Sidebar';
 // import AddRecord from './components/AddRecord';
 
-function App(data_) {
+function App() {
+
+  const [data, setData] = useState({
+    category:"",
+    type:0,
+    Others:"",
+    amount: 0,
+    date: ""
+  })
+
+  const [recordUpdated, setRecordUpdated] = useState(false)
+
+
   // const [data, setData] = useState(data_)
   const [allData, setAllData] = useState([])
   useEffect(() => {
@@ -15,7 +27,6 @@ function App(data_) {
       fetch('http://localhost:9000/api/records')
       .then(records => records.json())
       .then(records => {
-        console.log(records)
         return fetch('http://localhost:9000/api/categories')
         .then(categories => categories.json())
         .then(categories => {
@@ -50,19 +61,16 @@ function App(data_) {
       .then(records => setAllData(records))
     }
     getRecords()
-  }, [])
+    setRecordUpdated(false)
+  }, [recordUpdated])
 
   return (
     <Fragment>
-      <div className='dashboard'>
-        <Sidenar />
-        <Records allData={allData}/>
-        {/* <div className='list'>
-          <Records allData={allData}/>
-        </div> */}
-        {/* <div>
-          <AddRecord data={data} setData={setData}/>
-        </div> */}
+      <div className='dashboard' style={{display: 'flex'}}>
+        <Sidebar />
+        <div className='dashboard-content'>
+          <Records allData={allData} data={data} setData={setData} setRecordUpdated={setRecordUpdated}/>
+        </div>
       </div>
     </Fragment>
   );
