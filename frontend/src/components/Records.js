@@ -12,19 +12,19 @@ const Records = ({allData,data,setData, setRecordUpdated}) => {
   const [buttonPopup, setPopUp] = useState(false)
 
   const handlePopUpDelete = (id) => {
-      setPopUp(() => {
-          return <Fragment>
-              <h3>Delete Confirmation</h3>
-              <p>Are you sure you want to delete?</p>
-              <div style={{display: 'flex',width: '100%',justifyContent: 'flex-end',gap: '10px'}}>
-                  <button style={{cursor: 'pointer', background: 'unset', border: 'unset'}} onClick={()=>setPopUp("")}>Cancel</button>
-                  <button style={{cursor: 'pointer',background: 'red',border: 'unset',padding: '9px 20px',fontSize: '14px',borderRadius: '10px',color: 'white'}}  onClick={()=>{
-                      handleDelete(id)
-                      setPopUp('')
-                  }}>Delete</button>
-              </div>
-          </Fragment>
-      })
+    setPopUp(() => {
+        return <Fragment>
+            <h3>Delete Confirmation</h3>
+            <p>Are you sure you want to delete?</p>
+            <div style={{display: 'flex',width: '100%',justifyContent: 'flex-end',gap: '10px'}}>
+                <button style={{cursor: 'pointer', background: 'unset', border: 'unset'}} onClick={()=>setPopUp("")}>Cancel</button>
+                <button style={{cursor: 'pointer',background: 'red',border: 'unset',padding: '9px 20px',fontSize: '14px',borderRadius: '10px',color: 'white'}}  onClick={()=>{
+                    handleDelete(id)
+                    setPopUp('')
+                }}>Delete</button>
+            </div>
+        </Fragment>
+    })
   }
 
   const handleDelete = (id) => {
@@ -47,10 +47,13 @@ const Records = ({allData,data,setData, setRecordUpdated}) => {
     </Fragment>
 }
 
+
 const handleUpdate = (id, data_) => {
+    console.log(data_)
+    // handleGetUpdate(id,data_)
     //validation
     setPopUp(() => {
-        return <UpdateForm id={id} data_={data_}/>
+      return <UpdateForm id={id} data_={data_}/>
     })
     // setListUpdated(true)
 }
@@ -84,8 +87,8 @@ const handleUpdate = (id, data_) => {
                 allData.map((data, i) => {
                   currentMoney += parseFloat(data.amount)
                     return (<tr className='table_row' key={i}>
-                      <th className='table_cell' >{data.id_category}</th>
-                      <th className='table_cell' >{data.id_typs}</th>
+                      <th className='table_cell' >{data.id_category.name}</th>
+                      <th className='table_cell' >{data.id_typs.name}</th>
                       <th className='table_cell' >{data.others}</th>
                       <th className='table_cell' >${data.amount}</th>
                       <th className='table_cell' >{data.date.split('T')[0].split('-').join('/')}</th>

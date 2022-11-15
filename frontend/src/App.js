@@ -10,9 +10,9 @@ import Sidebar from './components/Sidebar';
 function App() {
 
   const [data, setData] = useState({
-    category:"",
-    type:0,
-    Others:"",
+    id_category:{},
+    id_typs:{},
+    others:"",
     amount: 0,
     date: ""
   })
@@ -33,7 +33,10 @@ function App() {
           records.map(r => {
             for (let c of categories){
               if(c.id === parseInt(r.id_category)){
-                r.id_category = c.name
+                const catValName = {}
+                catValName.value = r.id_category
+                catValName.name= c.name
+                r.id_category = catValName
               }
             }
             return r
@@ -48,7 +51,10 @@ function App() {
           records.map(r => {
             for (let t of typs){
               if(t.id === parseInt(r.id_typs)){
-                r.id_typs = t.type
+                const typeValName = {}
+                typeValName.value = r.id_typs
+                typeValName.name= t.type
+                r.id_typs = typeValName
               }
             }
             return r

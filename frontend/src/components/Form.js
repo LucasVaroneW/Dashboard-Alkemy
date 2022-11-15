@@ -16,12 +16,14 @@ import Select from "react-select"
 const Form = (props) => {
     const [buttonPopup, setPopUp] = useState(false)
     const handleChange = (e) => {
+        console.log(e)
         let data_ = {...props.data}
-        if(e.target){
-            data_[e.target.name] = e.target.value
-        } else {
+        if(e.value){
             data_[e.name] = e.value
+        } else {
+            data_[e.target.name] = e.target.value
         }
+        console.log(data_)
         props.setData(data_)
     }
 
@@ -33,8 +35,9 @@ const Form = (props) => {
                 .then(res => {
                     let categories = []
                     for(let c of res){
-                        categories.push({value: c.name, label: c.name})
+                        categories.push({value: c.id, label: c.name})
                     }
+
                     setCategories(categories)
                     })
         }
@@ -55,33 +58,43 @@ const Form = (props) => {
         //format date
         props.data.date = date.split('T')[0]
         //query
-        if(props.btn === 'add'){
+        if(props.btn === 'Add'){
             const requestInit = {
                 method: 'POST',
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify(props.data)
             }
-            console.log(props.data)
             fetch('http://localhost:9000/api/records', requestInit)
-                .then(res => res.json())
-                    .then(res => toast.success((res.msg,{style: {borderRadius: '10px',background: '#333',color: '#fff'}})))
+            .then(res => res.json())
+            .then(res => toast.success(res.msg,{style: {borderRadius: '10px',background: '#333',color: '#fff'}}))
         } else {
             const requestInit = {
                 method: 'PUT',
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify(props.data)
             }
-
             fetch('http://localhost:9000/api/records/'+props.data.id, requestInit)
-            .then(res => res.text())
+            .then(res => res.json())
             .then(res => {
-                toast.success(res,{style: {borderRadius: '10px',background: '#333',color: '#fff'}})
+                console.log(res)
+                toast.success(res.msg,{style: {borderRadius: '10px',background: '#333',color: '#fff'}})
             })
         }
         props.setPopUp("")
         //Actualize list view
         props.setRecordUpdated(true)
     }
+
+    let date_ = ""
+    if(props.data.date){
+        let date_arr = props.data.date.split('T')[0].split('-')
+        date_ = new Date()
+        date_.setYear(date_arr[0])
+        date_.setMonth(date_arr[1]-1)
+        date_.setDate(date_arr[2])
+        date_ = date_.toISOString().substring(0,10)
+    }
+
 
     //types
     let types = [
@@ -101,35 +114,40 @@ const Form = (props) => {
         }
     }, [])
     
+    function optionValueType (){
+        var optionType = props.data.id_typs.value ? props.data.id_typs.value : ''
+        return types[optionType];
+    }
     
-    let disable = props.btn === "update" ? true : false
+    let disable = props.btn === "Update" ? true : false
     return (
         <Fragment>
             <form onSubmit={handleSubmit}>
                 <div className="input_container">
                     <label htmlFor="date">Date</label>
-                    <input name="date" type="date" onChange={handleChange} id="date"/>
+                    <input name="date" type="date" onChange={handleChange} id="date" defaultValue={date_}/>
                 </div>
                 <div className="input_container">
                     <label htmlFor="amount">Amount</label>
-                    <input step="any" name="amount" onChange={handleChange} type="number" id="amount"/>
+                    <input step="any" name="amount" onChange={handleChange} type="number" id="amount" defaultValue={props.data.amount ? props.data.amount : ''}/>
                 </div>
                 <div className="input_container">
                     <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                    <label htmlFor="category">Category</label>
+                    <label htmlFor="id_category">Category</label>
                     </div>
                     <Select
                         onChange={(e)=> {
-                            handleChange({...e, 'name': 'category'})
+                            handleChange({...e, 'name': 'id_category'})
                         }} 
                         options={categoriesData}
                     />
                 </div>
                 <div className="input_container">
-                    <label htmlFor="type">Type</label>
+                    <label htmlFor="id_typs">Type</label>
                     <Select
                         onChange={(e)=> {
-                            handleChange({...e, 'name': 'type'})
+            
+                            handleChange({...e, 'name': 'id_typs'})
                             setValueType(e)
                         }}
                         value={valueType}
@@ -138,8 +156,8 @@ const Form = (props) => {
                     />
                 </div>
                 <div className="input_container">
-                    <label htmlFor="description">Others</label>
-                    <input name="description" type="text" id="description"/>
+                    <label htmlFor="others">Others</label>
+                    <input name="others" type="text" id="others"/>
                 </div>
                 
                 <button type="submit" className="bnRecord" style={{marginTop: '20px'}}>{props.btn}</button>
@@ -151,11 +169,3 @@ const Form = (props) => {
 }
 
 export default Form
-
-
-
-
-
-// {"code":"ER_BAD_FIELD_ERROR","errno":1054,"sqlState":"42S22",
-// "sqlMessage":"Unknown column 'undefined' in 'where clause'","sql":
-// "UPDATE records set `category` = 'Others', `type` = '1', `Others` = '', `amount` = '6', `dat
