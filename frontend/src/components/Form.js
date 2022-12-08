@@ -76,7 +76,6 @@ const Form = (props) => {
             fetch('http://localhost:9000/api/records/'+props.data.id, requestInit)
             .then(res => res.json())
             .then(res => {
-                console.log(res)
                 toast.success(res.msg,{style: {borderRadius: '10px',background: '#333',color: '#fff'}})
             })
         }
@@ -103,21 +102,18 @@ const Form = (props) => {
     ]
     
     const [valueType, setValueType] = useState([])
-    
+    const [valueCategory, setValueCategory] = useState([])
+
     useEffect(() => {
-        if(props.data.type){
-            for(let t of types){
-                if(parseInt(t.value) === props.data.type){
-                    setValueType(t)
-                }
-            }
+        if(props.data.id_category.value){
+            setValueCategory({...props.data.id_category, 'label': props.data.id_category.name})
+            props.data.id_category = props.data.id_category.value
         }
-    }, [])
-    
-    function optionValueType (){
-        var optionType = props.data.id_typs.value ? props.data.id_typs.value : ''
-        return types[optionType];
-    }
+        if(props.data.id_typs.value){
+            setValueType({...props.data.id_typs, 'label': props.data.id_typs.name})
+            props.data.id_typs = props.data.id_typs.value
+        }
+    }, [props.data])
     
     let disable = props.btn === "Update" ? true : false
     return (
@@ -138,7 +134,9 @@ const Form = (props) => {
                     <Select
                         onChange={(e)=> {
                             handleChange({...e, 'name': 'id_category'})
-                        }} 
+                            setValueCategory(e)
+                        }}
+                        value={valueCategory}
                         options={categoriesData}
                     />
                 </div>

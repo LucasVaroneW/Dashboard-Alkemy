@@ -63,12 +63,10 @@ const handleUpdate = (id, data_) => {
   // }
 
   let [currentMoney, setCurrentMoney] = useState(0.00)
-
-
+// entra igual a 1
   return (
     <Fragment>
       <div style={{margin: '20px'}}>
-        <CurrentMoney data={data} setData={setData} currentMoney={currentMoney} setRecordUpdated={setRecordUpdated}/>
         <div className="table_container">
           <table className="table">
             <thead className='table_head'>
@@ -85,7 +83,12 @@ const handleUpdate = (id, data_) => {
             <tbody>
                 {
                 allData.map((data, i) => {
-                  currentMoney += parseFloat(data.amount)
+                  if(data.id_typs.name === 'Egress'){
+                    currentMoney -= parseFloat(data.amount)
+                  }
+                  if(data.id_typs.name === 'Income'){
+                    currentMoney += parseFloat(data.amount)
+                  }
                     return (<tr className='table_row' key={i}>
                       <th className='table_cell' >{data.id_category.name}</th>
                       <th className='table_cell' >{data.id_typs.name}</th>
@@ -103,6 +106,7 @@ const handleUpdate = (id, data_) => {
             </tbody>
           </table> 
         </div>
+        <CurrentMoney data={data} setData={setData} currentMoney={currentMoney} setRecordUpdated={setRecordUpdated}/>
         <PopUp trigger={buttonPopup} setPopUp={setPopUp}></PopUp>
         <Toaster position="bottom-right"/>
       </div>

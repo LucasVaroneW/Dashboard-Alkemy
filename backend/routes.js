@@ -55,8 +55,7 @@ routes.put('/:table/:id', (req, res)=>{
 
         conn.query(`UPDATE ${req.params.table} set ? WHERE id = ${req.params.id}`, [req.body], (err, rows)=>{
             if(err) return res.send(err)
-
-            res.send('Updated succesfully')
+            res.send('Updated succesfully!')
         })
     })
 })

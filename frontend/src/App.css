@@ -9,7 +9,37 @@
 
 :root{
     --m-background: linear-gradient(-45deg, #4568dc, #b06ab3);
+    height: 100vh;
+}
 
+.home-content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.home-logIn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
+    width: 720px;
+    border-radius: 18px;
+    border: 1px solid rgba(152, 150, 150, 0.52);
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    -ms-border-radius: 18px;
+    -o-border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 3px 2px rgba(108, 107, 107, 0.546);
+    background-color: white !important;
+}
+
+.home{
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 a,ul,li{
@@ -28,12 +58,26 @@ h6{
     margin-bottom: 0 !important;
 }
 
+
+/* --------------------------            DASHBOARD START                  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.dashboard{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.sidebar-position{
+    width: 30%;
+    float: left;
+    padding: 20px;
+    box-sizing: border-box;
+}
 .dashboard-content{
     display: flex;
-    width: 100vh;
-    height: 100vh;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
 }
-
+/* --------------------------            DASHBOARD END                  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* --------------------------            SIDEBAR START                  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
   
@@ -93,6 +137,16 @@ ion-icon{
     padding-top: 15px;
 }
 
+.sidebar-header-img{
+    width: 60px;
+}
+
+.sidebar-header-name{
+    font-size: 12px;
+    margin: 12px;
+
+}
+
 .sidebar-item{
     display: flex;
     align-items: center;
@@ -115,7 +169,38 @@ ion-icon{
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
     /* color: #ffffffb3 !important; */
+}
 
+.sidebar-logout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 12%;
+    cursor: pointer;
+}
+
+.logButton{
+    height: 50px;
+    border: 5em;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    transform: translate(0);
+    background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+    padding: 0.7em 2em;
+    border-radius: 65px;
+    box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
+    transition: box-shadow 0.25s;
+}
+
+.logButton:hover {
+    background-image: var(--m-background);
+    box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
+}
+  
+.logButton:hover .text {
+    background-image: var(--m-background);
 }
 
 
@@ -177,6 +262,7 @@ thead{
     color: #666666;
     display: flex;
     justify-content: space-around;
+    margin-top: 5%;
 }
 
 .currentMoney{
@@ -298,3 +384,31 @@ form .btn{
 }
 
 /* --------------------------            FORM END                   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+@media (max-width: 990px){
+    .sidebar-item-text{
+        display: none;
+    }
+    .sidebar-item{
+        justify-content: center;
+        margin: 7px;
+        padding-top: 7px;
+
+    }
+    .sidebar-link{
+        display: none;
+    }
+    .icon-inner{
+        height: 84%;
+    }
+    .sidebar-header{
+        padding-top: 25px;
+    }
+    .sidebar-item:hover{
+        border-radius: 7px;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        -ms-border-radius: 7px;
+        -o-border-radius: 7px;
+    }
+
+}

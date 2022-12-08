@@ -1,13 +1,14 @@
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../node_modules/font-awesome/css/font-awesome.css'
-// import Sidebar from './components/Sidebar'
+import { useAuth0 } from '@auth0/auth0-react'
 import Records from './components/Records'
 import { Fragment, useEffect, useState } from 'react';
 import Sidebar from './components/Sidebar';
-// import AddRecord from './components/AddRecord';
+import Home from './components/Home';
 
 function App() {
+  const { isAuthenticated } = useAuth0()
 
   const [data, setData] = useState({
     id_category:{},
@@ -72,12 +73,24 @@ function App() {
 
   return (
     <Fragment>
-      <div className='dashboard' style={{display: 'flex'}}>
-        <Sidebar />
-        <div className='dashboard-content'>
-          <Records allData={allData} data={data} setData={setData} setRecordUpdated={setRecordUpdated}/>
-        </div>
-      </div>
+        
+        {isAuthenticated ? (<>
+            <div className='dashboard'>
+              <Sidebar className='sidebar-position' />
+              <div className='dashboard-content' style={{marginLeft: '15%'}} >
+                <Records allData={allData} data={data} setData={setData} setRecordUpdated={setRecordUpdated}/>
+              </div>
+            </div>
+          </>) : (
+          <>
+          <div className='home-content'>
+            <div className='home-logIn'>
+              <Home />
+            </div>
+          </div>
+          </>
+          )
+        }  
     </Fragment>
   );
 }
